@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Complete</title>
+    <link rel="stylesheet" href="../statics/css/feedback.css">
+
+    <style>
+        /* Your existing styles... */
+
+        /* Adjusted loading overlay styles */
+        #loading-overlay {
+            position: fixed; /* Fixed position to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        #loading-gif {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Your existing content... -->
+        <h1>Interview Complete</h1>
+        <p>Thank you for answering all the questions.</p>
+        <button class="view-result-btn" id="view-result-btn">View Result</button>
+        <a href="home.html" class="go-home-btn">Go Home</a>
+        
+
+        <!-- Loading overlay -->
+        <div id="loading-overlay">
+            <img id="loading-gif" src="../statics/img/loading2.gif" alt="Loading...">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("view-result-btn").addEventListener("click", function () {
+                document.getElementById("view-result-btn").disabled = true;
+
+                // Display loading overlay
+                document.getElementById("loading-overlay").style.display = "flex";
+
+                // Perform AJAX request to trigger the conversion and wait for completion
+                fetch("http://127.0.0.1:5000/view_result", {
+                    method: "GET"
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Hide loading overlay
+                    document.getElementById("loading-overlay").style.display = "none";
+
+                    // Check the status of the processing
+                    if (data.status === "success") {
+                        // Redirect to the result page after successful processing
+                        window.location.href = "/result.html";
+                    } else {
+                        // Handle error case
+                        console.error("Error:", data.message);
+                        document.getElementById("view-result-btn").disabled = false;
+                    }
+                })
+                .catch((error) => {
+                    // Hide loading overlay
+                    document.getElementById("loading-overlay").style.display = "none";
+
+                    // Log the error details to the console
+                    console.error('Error:', error);
+
+                    // Enable the button
+                    document.getElementById("view-result-btn").disabled = false;
+                });
+
+            });
+        });
+    </script>
+</body>
+
+</html>

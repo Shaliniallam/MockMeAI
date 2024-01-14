@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Results</title>
+    <link rel="stylesheet" href="../statics/css/result.css">
+    <script src="../statics/js/result.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Interview Results</h1>
+      <h4>Question </h4>
+        <div id="results">
+            {% for result in results %}
+            <div class="question">{{ result.question }}</div>
+          <center><h4>Your Answer </h4></center>
+            <div class="audio">
+                <audio controls>
+                    
+                    <source src="{{ url_for('serve_audio', filename=result.audio_path) }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+          <center><h4>Expected Answer </h4></center>
+            <div class="answer"> {{ result.answer }}</div>
+            {% endfor %}
+        </div>
+        <a href="#" id="next-question-btn" class="next-question-btn">Next Question</a>
+    </div>
+    <div id="loading-container" style="display: none;">
+        <!-- Loading container with GIF -->
+        <img src="../statics/img/loading2.gif" alt="Loading...">
+    </div>
+    
+</body>
+</html>

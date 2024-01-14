@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microphone Test</title>
+</head>
+<body>
+    <button id="record-button" onclick="startRecording()">🎙️ Record Answer</button>
+    <script>
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const recordedAudio = new Blob(chunks, { type: 'audio/wav' });
+                    console.log('Recorded Audio:', recordedAudio);
+                };
+
+                mediaRecorder.start();
+
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                }, 5000);  // Record for 5 seconds (adjust as needed)
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+            }
+        }
+    </script>
+</body>
+</html>

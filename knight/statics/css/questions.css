@@ -1,0 +1,116 @@
+/* New styles for the AI Questionnaire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #090909;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    background-color: #090909;
+    color: #20c8b4;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#robot-container {
+    margin-bottom: 20px;
+    order: -1; /* Move the container to the start of the flex container */
+}
+
+#robot {
+    max-width: 100%;
+    height: auto;
+}
+
+#question-container {
+    background-color: #040404;
+    border: 1px solid #0b0b0b;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+    padding: 20px;
+}
+
+#answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+/* Enhanced button styles */
+.btn {
+    padding: 10px 30px;
+    background-color: #13bcae;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #090909;
+}
+
+#submit-button:disabled,
+#record-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#timer {
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+}
+
+#timer-count {
+    font-weight: bold;
+}
+
+/* Navigation menu styles */
+.nav-menu {
+    background-color: #0a0a0a;
+    padding: 10px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 15px;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: #20c8b4;
+}
+
+/* Footer styles */
+footer {
+    background-color: #0a0a0a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}

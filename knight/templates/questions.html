@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Time</title>
+    <link rel="stylesheet" href="../statics/css/default.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap">
+    <link rel="stylesheet" href="../statics/css/questions.css">
+    <!--vendors styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <script src="../statics/js/questions.js"></script>
+</head>
+<body>
+    <header>
+        <h1>MockMeAI.</h1>
+    </header>
+    <nav class="nav-menu">
+        <a href="interview.html">Interview Details</a>
+        <a href="/home">Home</a>
+        <!-- Add more navigation links if needed -->
+    </nav>
+    <div class="container">
+        <div id="robot-container">
+            <img id="robot" src="../statics/img/robo.png" alt="Robot">
+        </div>
+        <div id="question-container">
+            <h4>Question : {{current_question_index}}</h4>
+            <h3><p>{{ current_question }}</p></h3>
+        </div>
+        <div id="answer-container">
+            <form id="response-form" action="{{ url_for('questions', question_number=current_question_index) }}" method="POST">
+                <input type="hidden" id="current-question-index" name="current_question_index" value="{{ current_question_index }}">
+                
+                <!-- Updated button to call the startRecording function -->
+                <button type="button" id="record-button" class="btn" onclick="startRecording()">🎙️ Record Answer</button>
+
+                <!-- Display the timer countdown -->
+                <p id="timer">Timer: <span id="timer-count">{{ timerCount }}</span> seconds</p>
+
+                <!-- Updated button to call the submitRecording function -->
+                <button type="button" id="submit-button" class="btn" onclick="submitRecording()" disabled>Submit Answer</button>
+                <button type="button" class="btn" onclick="skipQuestion()">Skip</button>
+            </form>
+
+            <!-- Display the audio player controls -->
+            <audio id="audio-player" controls style="display: none;"></audio>
+        </div>
+    </div>
+    <footer>
+        &copy; 2023 MockMeAI. by @Sumanth, @SriHarsha, and @Chandan
+    </footer>
+    
+</body>
+</html>
